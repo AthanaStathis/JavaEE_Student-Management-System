@@ -1,7 +1,7 @@
 POST: Create a student
 
-            Endpoint: http://localhost:8080/student-management-system/api/v1/students <br>
-            URL-Preview: http://localhost:8080/student-management-system/api/v1/students <br>
+            Endpoint: http://localhost:8080/student-management-system/api/v1/students 
+            URL-Preview: http://localhost:8080/student-management-system/api/v1/students 
             Requests JSON-Body: {  
                                     "firstName": "Birger",
                                     "lastName": "Birgersson", 

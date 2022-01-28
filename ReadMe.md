@@ -1,3 +1,8 @@
+Connection to H2-Database:
+
+    http://localhost:8080/student-management-system/h2/login.jsp?jsessionid=0495721e3ba3bf4d9fe96b91a6c08c4f
+
+
 POST: Create a student
 
             Endpoint: http://localhost:8080/student-management-system/api/v1/students 

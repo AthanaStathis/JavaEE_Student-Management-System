@@ -1,23 +1,49 @@
 package se.iths.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
+
     @NotEmpty
+    //@Column(name = "STUDENT_FIRST_NAME")
     private String firstName;
+
     @NotEmpty
+    //@Column(name = "STUDENT_LAST_NAME")
     private String lastName;
+
     @NotEmpty
+    //@Column(name = "STUDENT_EMAIL")
     private String email;
+
+    //@Column(name = "STUDENT_PHONE_NUMBER")
     private String phoneNumber;
+
+//    @ManyToMany(mappedBy="students")
+//    private List<Subject> subjects = new ArrayList<>();
+
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+//    public void addSubject(Subject subject) {
+//        subjects.add(subject);
+//    }
 
     public Long getId() {
         return id;
@@ -62,4 +88,14 @@ public class Student {
     public boolean hasRequiredFields() {
         return this.getFirstName() != null || this.getLastName() != null || this.getEmail() != null;
     }
+
+//    @JsonbTransient
+//    public List<Subject> getSubjects() {
+//        return subjects;
+//    }
+//
+//    public void setSubjects(List<Subject> subjects) {
+//        this.subjects = subjects;
+//    }
+
 }

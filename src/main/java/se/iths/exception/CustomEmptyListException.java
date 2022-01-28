@@ -6,10 +6,10 @@ import javax.ws.rs.core.Response;
 
 public class CustomEmptyListException extends WebApplicationException {
 
-    public CustomEmptyListException() {
+    public CustomEmptyListException(String entity) {
         super(Response
                 .status(Response.Status.NOT_FOUND)
-                .entity("Student List Empty!! :O")
+                .entity(entity + " List Empty!!! :O")
                 .type(MediaType.TEXT_PLAIN)
                 .build()
         );

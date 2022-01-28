@@ -22,6 +22,7 @@ public class StudentService {
 
     public void createStudent(Student student) {
         try {
+
             entityManager.persist(student);
         }
         catch (Exception e) {
@@ -33,7 +34,7 @@ public class StudentService {
         List<Student> allStudents = entityManager.createQuery("SELECT i from Student i", Student.class)
                                                 .getResultList();
         if (allStudents.isEmpty())
-            throw new CustomEmptyListException();
+            throw new CustomEmptyListException("Student");
         return allStudents;
     }
 
@@ -51,11 +52,12 @@ public class StudentService {
     }
 
     public List<Student> findByLastName(String lastName) {
-        List<Student> foundStudent = entityManager.createQuery("SELECT s from Student s where s.lastName = :lastName", Student.class)
-                                                    .setParameter("lastName", lastName)
-                                                    .getResultList();
+        List<Student> foundStudent = entityManager.createQuery("SELECT s from Student s " +
+                "where s.lastName = :lastName", Student.class)
+                .setParameter("lastName", lastName)
+                .getResultList();
         if (foundStudent.isEmpty())
-            throw new CustomEmptyListException();
+            throw new CustomEmptyListException("Student");
         return foundStudent;
     }
 

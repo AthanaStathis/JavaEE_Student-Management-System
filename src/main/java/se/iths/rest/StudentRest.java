@@ -48,12 +48,12 @@ public class StudentRest {
         return Response.status(Response.Status.FOUND).entity(studentList).build();
     }
 
-    @Path("{id}")
+   /* @Path("{id}")
     @DELETE
     public Response deleteStudentById(@PathParam("id") Long id) {
         studentService.deleteStudentById(id);
         return Response.ok().build();
-    }
+    }*/
 
     @Path("")
     @PUT

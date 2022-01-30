@@ -1,6 +1,5 @@
 package se.iths.rest;
 
-import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 import se.iths.service.TeacherService;
 
@@ -46,10 +45,10 @@ public class TeacherRest {
         return Response.ok(foundTeacher).build();
     }
 
-    @Path("{id}")
+ /*   @Path("{id}")
     @DELETE
     public Response deleteTeacher(@PathParam("id") Long id) {
-        teacherService.deleteTeacher(id);
+        teacherService.deleteTeacherById(id);
         return Response.ok().build();
-    }
+    }*/
 }

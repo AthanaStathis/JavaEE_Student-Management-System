@@ -22,7 +22,6 @@ public class StudentService {
 
     public void createStudent(Student student) {
         try {
-
             entityManager.persist(student);
         }
         catch (Exception e) {
@@ -31,18 +30,15 @@ public class StudentService {
     }
 
     public List<Student> getAllStudents() {
-        List<Student> allStudents = entityManager.createQuery("SELECT i from Student i", Student.class)
-                                                .getResultList();
+        List<Student> allStudents = entityManager
+                .createQuery("SELECT i from Student i", Student.class)
+                .getResultList();
         if (allStudents.isEmpty())
             throw new CustomEmptyListException("Student");
         return allStudents;
     }
 
     public Student findStudentById(Long id) {
-        //Student foundStudent = entityManager.find(Student.class, id);
-        //if (foundStudent == null)
-        //    throw new CustomNotFoundException();
-        //return foundStudent;
         try {
             entityManager.find(Student.class, id);
         }catch (Exception e) {
@@ -66,7 +62,7 @@ public class StudentService {
         if (studentToBeDeleted == null)
             throw new WebApplicationException(Response
                     .status(Response.Status.BAD_REQUEST)
-                    .entity("Couldn't delete Student. No student with id "+ id +" doesn't exist in database " +":( ")
+                    .entity("Couldn't delete Student. Student with id "+ id +" doesn't exist in database " +":( ")
                     .type(MediaType.TEXT_PLAIN)
                     .build());
         entityManager.remove(studentToBeDeleted);
@@ -84,13 +80,10 @@ public class StudentService {
         try {
             Student foundStudent = entityManager.find(Student.class, id);
             foundStudent.setFirstName(name);
-            entityManager.merge(foundStudent);
+            return entityManager.merge(foundStudent);
         }
         catch (Exception e) {
             throw new CustomBadRequestException();
         }
-        Student foundStudent = entityManager.find(Student.class, id);
-        foundStudent.setFirstName(name);
-        return entityManager.merge(foundStudent);
     }
 }
